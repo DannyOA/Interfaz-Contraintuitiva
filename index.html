@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Mundo al Revés</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        
+        #gameCanvas {
+            border: 4px solid #fff;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            background: #1a1a2e;
+        }
+        
+        .info {
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+            background: rgba(0,0,0,0.3);
+            padding: 15px 30px;
+            border-radius: 10px;
+        }
+        
+        h1 {
+            margin: 0 0 10px 0;
+            font-size: 2em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .score {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .instructions {
+            font-size: 0.9em;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+        
+        .game-over {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.9);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            display: none;
+        }
+        
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+        
+        button:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="info">
+        <h1>🔄 El Mundo al Revés 🔄</h1>
+        <div class="score">Puntos: <span id="score">0</span></div>
+        <div class="instructions">
+            ⚠️ ¡Los controles hacen lo OPUESTO! ⚠️<br>
+            Presiona IZQUIERDA para ir a la DERECHA<br>
+            Presiona DERECHA para ir a la IZQUIERDA<br>
+            Recoge las estrellas ⭐ y evita los obstáculos 💀
+        </div>
+    </div>
+    
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
+    
+    <div class="game-over" id="gameOver">
+        <h2>¡Juego Terminado!</h2>
+        <div class="score">Puntos finales: <span id="finalScore">0</span></div>
+        <button onclick="resetGame()">Jugar de nuevo</button>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
