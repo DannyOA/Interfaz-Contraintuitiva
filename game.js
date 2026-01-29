@@ -9,7 +9,6 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
-// ================== FONDO ESPACIAL ==================
 let backgroundObjects = [];
 
 function createBackgroundObject() {
@@ -28,7 +27,6 @@ function createBackgroundObject() {
     };
 }
 
-// Crear objetos iniciales
 for (let i = 0; i < 60; i++) {
     const obj = createBackgroundObject();
     obj.y = Math.random() * canvas.height;
@@ -69,7 +67,6 @@ function drawBackground() {
     ctx.globalAlpha = 1;
 }
 
-// ================== JUEGO ==================
 let player = {
     x: canvas.width / 2,
     y: canvas.height - 80,
@@ -86,7 +83,6 @@ let stars = [];
 let obstacles = [];
 let gameSpeed = 2;
 
-// Spawns
 function spawnStar() {
     stars.push({
         x: Math.random() * (canvas.width - 30),
@@ -104,7 +100,6 @@ function spawnObstacle() {
     });
 }
 
-// Controles invertidos
 document.addEventListener('keydown', e => {
     if (e.key === 'ArrowLeft') player.moveRight = true;
     if (e.key === 'ArrowRight') player.moveLeft = true;
@@ -115,13 +110,11 @@ document.addEventListener('keyup', e => {
     if (e.key === 'ArrowRight') player.moveLeft = false;
 });
 
-// Dibujar nave
 function drawPlayer() {
     ctx.font = '40px Arial';
     ctx.fillText('🚀', player.x, player.y);
 }
 
-// Estrellas recolectables
 function drawStars() {
     stars.forEach((star, i) => {
         ctx.font = `${star.size}px Arial`;
@@ -143,7 +136,6 @@ function drawStars() {
     });
 }
 
-// Meteoritos
 function drawObstacles() {
     obstacles.forEach((obs, i) => {
         ctx.font = '40px Arial';
@@ -163,13 +155,11 @@ function drawObstacles() {
     });
 }
 
-// Movimiento
 function updatePlayer() {
     if (player.moveLeft && player.x > 0) player.x -= player.speed;
     if (player.moveRight && player.x < canvas.width - player.width) player.x += player.speed;
 }
 
-// UI
 function drawUI() {
     ctx.fillStyle = 'rgba(0,0,0,0.6)';
     ctx.fillRect(20, 20, 420, 120);
@@ -184,14 +174,12 @@ function drawUI() {
     ctx.fillText(`⭐ Puntos: ${score}`, canvas.width - 180, 50);
 }
 
-// Game over
 function endGame() {
     gameRunning = false;
     document.getElementById('finalScore').textContent = score;
     document.getElementById('gameOver').style.display = 'block';
 }
 
-// Reset
 function resetGame() {
     score = 0;
     gameSpeed = 2;
@@ -203,7 +191,6 @@ function resetGame() {
     gameLoop();
 }
 
-// Loop
 function gameLoop() {
     if (!gameRunning) return;
 
@@ -220,7 +207,6 @@ function gameLoop() {
     requestAnimationFrame(gameLoop);
 }
 
-// Spawner
 setInterval(() => {
     if (gameRunning) {
         Math.random() > 0.5 ? spawnStar() : spawnObstacle();
